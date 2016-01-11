@@ -452,6 +452,8 @@ alias badcd="unalias cd";
 alias cl-on="alias cd=cl";
 alias up="cd ..";
 alias la="ls -lah";
+alias aliasedit='edit ~/.bashrc'
+alias aliasreload='. ~/.bashrc'
 
 function esp_help_bash_nav (){
     help_section "Bash Navigation";
@@ -461,6 +463,8 @@ function esp_help_bash_nav (){
         help_command "la" "Alias for 'ls -lah'";
         help_command "up" "Jumps into the parent directory aka cd ..";
         help_command "badcd" "Useful when the automatic cd&ls is messing up";
+        help_command "aliasedit" "Alias for 'edit ~/.bashrc'";
+        help_command "aliasreload" "Alias for '. ~/.bashrc'";
 }
 
 
