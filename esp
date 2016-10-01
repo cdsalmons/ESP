@@ -573,7 +573,7 @@ alias wp='~/wp-cli.phar'
 alias sp='~/wp-cli.phar'
 alias esp='source /dev/stdin <<< "$(curl -sL https://raw.githubusercontent.com/cdsalmons/ESP/master/esp)"'
 alias extended='source /dev/stdin <<< "$(curl -sL https://raw.githubusercontent.com/cdsalmons/ESP/master/esp)"'
-alias spcm='csf -cp && source /dev/stdin <<< "$(curl -sL https://raw.githubusercontent.com/cdsalmons/ESP/master/esp)"'
+alias spcm='csf -cp ; source /dev/stdin <<< "$(curl -sL https://raw.githubusercontent.com/cdsalmons/ESP/master/esp)"'
 
 alias aliasedit='edit ~/.bashrc'
 alias aliasreload='. ~/.bashrc'
