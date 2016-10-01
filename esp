@@ -526,6 +526,61 @@ alias perdir='awk '\''BEGIN{dir=DIR?DIR:ENVIRON["PWD"];l=split(dir,parts,"/");la
 alias csi="esp_script_dl \"csi.pl\" \"https://raw.githubusercontent.com/cPanelTechs/CSI/master/csi.pl\"";
 alias hostname-history="grep -A 999 sub_domains /var/cpanel/userdata/nobody/main | grep -v sub_domains| sed 's/\ \ \-\ //g'";
 
+## get rid of command not found ##
+alias cd..='cd ..'
+
+## a quick way to get out of current directory ##
+alias ..='cd ..'
+alias ...='cd ../../../'
+alias ....='cd ../../../../'
+alias .....='cd ../../../../'
+alias .4='cd ../../../../'
+alias .5='cd ../../../../..'
+
+## Colorize the grep command output for ease of use (good for log files)##
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+## IPTables ##
+alias blockedips='iptables -vnL --line-numbers'
+alias blockip='iptables -I INPUT -j DROP -s '
+alias blacklist='iptables -I INPUT -j DROP -s '
+
+alias unblockip='iptables -D INPUT -j DROP -s '
+alias whitelist='iptables -D INPUT -j DROP -s '
+
+## cPanel ##
+alias tailapache='tail -f /usr/local/apache/logs/error_log'
+alias tailapacheuser='tail -f /usr/local/apache/logs/error_log | grep'
+alias tailapacheip='tail -f /usr/local/apache/logs/error_log | grep'
+alias tailexim='tail -f /var/log/exim_mainlog'
+alias modsecerrors='grep -i modsec /usr/local/apache/logs/error_log | sed "s/$/\\n/"'
+
+## Security ##
+alias scanuser='cxs --user '
+alias findcrack=''
+alias bomber='cd /root/support/exBOMBER/ && ./exBOMBER'
+alias bomberinstall='mkdir -p /root/support/exBOMBER
+wget https://raw.githubusercontent.com/InterGenStudios/exBOMBER/master/exBOMBER \
+-P /root/support/exBOMBER/ --no-check-certificate
+chmod +x /root/support/exBOMBER/exBOMBER
+cd /root/support/exBOMBER/ && ./exBOMBER'
+
+### Misc ###
+alias c='clear'
+alias wp='~/wp-cli.phar'
+alias sp='~/wp-cli.phar'
+alias esp='source /dev/stdin <<< "$(curl -sL https://raw.githubusercontent.com/cdsalmons/ESP/master/esp)"'
+alias extended='source /dev/stdin <<< "$(curl -sL https://raw.githubusercontent.com/cdsalmons/ESP/master/esp)"'
+alias spcm='csf -cp && source /dev/stdin <<< "$(curl -sL https://raw.githubusercontent.com/cdsalmons/ESP/master/esp)"'
+
+alias aliasedit='edit ~/.bashrc'
+alias aliasreload='. ~/.bashrc'
+alias aliassave='. ~/.bashrc'
+
+
+
 function oddthings () {
     echo  "$(tput bold)odd things$(tput sgr0)";
     lsof -Pni |grep -vE ':80|:443|imap|pop3|named|cpdavd|courier|dovecot|exim|mysql|pure|pro|sshd|cpsrvd|spamd|ntpd';
