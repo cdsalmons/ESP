@@ -73,14 +73,17 @@ fi;
 export PATH=$PATH:/usr/local/cpanel/scripts/:/usr/local/cpanel/bin/
 
 # Simple Alias to ensure color is not always set to on, that can cause issues with less
-alias grep="\grep --color=auto ";
+## Colorize the grep command output for ease of use (good for log files)##
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
 
 # Grab the Ticket number if it exists from the PS1 prompt 
   # Dev Note: Don't escape grep since we alias it
 if [ `echo $PS1 | grep "cPs#"| \wc -l` -ge 1 ]; then
     export TICKET=`echo $PS1 | \awk '{{print $3}}'| \cut -d \@ -f 2`;
 else
-    export TICKET="n/a";
+    export TICKET="SPCM Shell";
 fi;
 
 
@@ -312,7 +315,8 @@ esp_help_backup(){
 # ------------------
 
 alias server-type="strings /var/cpanel/envtype";
-alias sys-snap-install="cd /root;wget wget http://cptechs.info/system-snapshot/sys-snap.sh;chmod +x sys-snap.sh;nohup sh sys-snap.sh &";
+alias syssnap="/root/sys-snap.pl"
+alias sys-snap-install="cd /root;wget wget https://github.com/cPanelTechs/SysSnapv2/sys-snap.sh;chmod +x sys-snap.sh;nohup sh sys-snap.sh &";
 alias sys-snap-start="cd /root;nohup sh sys-snap.sh &";
 alias cpu-count="grep proc /proc/cpuinfo |wc -l" ;
 alias cpu-info="grep model\ name /proc/cpuinfo | sed s/model\ name//g | uniq -c" ;
@@ -450,10 +454,21 @@ function esp_help_PHP_Apache(){
 alias cl-off="unalias cd";
 alias badcd="unalias cd";
 alias cl-on="alias cd=cl";
-alias up="cd ..";
 alias la="ls -lah";
 alias aliasedit='edit ~/.bashrc'
 alias aliasreload='. ~/.bashrc'
+
+## get rid of command not found ##
+alias cd..='cd ..'
+
+## a quick way to get out of current directory ##
+alias up="cd ..";
+alias ..='cd ..'
+alias ...='cd ../../../'
+alias ....='cd ../../../../'
+alias .....='cd ../../../../'
+alias .4='cd ../../../../'
+alias .5='cd ../../../../..'
 
 function esp_help_bash_nav (){
     help_section "Bash Navigation";
@@ -526,21 +541,9 @@ alias perdir='awk '\''BEGIN{dir=DIR?DIR:ENVIRON["PWD"];l=split(dir,parts,"/");la
 alias csi="esp_script_dl \"csi.pl\" \"https://raw.githubusercontent.com/cPanelTechs/CSI/master/csi.pl\"";
 alias hostname-history="grep -A 999 sub_domains /var/cpanel/userdata/nobody/main | grep -v sub_domains| sed 's/\ \ \-\ //g'";
 
-## get rid of command not found ##
-alias cd..='cd ..'
 
-## a quick way to get out of current directory ##
-alias ..='cd ..'
-alias ...='cd ../../../'
-alias ....='cd ../../../../'
-alias .....='cd ../../../../'
-alias .4='cd ../../../../'
-alias .5='cd ../../../../..'
 
-## Colorize the grep command output for ease of use (good for log files)##
-alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
+
 
 ## IPTables ##
 alias blockedips='iptables -vnL --line-numbers'
